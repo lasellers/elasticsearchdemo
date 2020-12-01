@@ -1,10 +1,16 @@
-docker pull docker.elastic.co/elasticsearch/elasticsearch:7.10.0
+# ElasticSearch Demo
+
+Simple PHP + Composer demo of local elasticsearch interactions.
+
+
+## docker run
 
 docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.10.0
 
 sudo docker-compose up
 
-== curl
+
+## curl
 
 curl -X PUT "localhost:9200/customer/_doc/1?pretty" -H 'Content-Type: application/json' -d'
 {
@@ -29,11 +35,13 @@ curl -H 'Content-Type: application/json' -XGET 'localhost:9200/customer/_doc/_se
 }
 }'
 
-== vm
+## vm
 
+Set temp:
 sysctl -w vm.max_map_count=262144
 
-If you want to set this permanently, you need to edit /etc/sysctl.conf and set vm.max_map_count to 262144.
+Set permanent:
+edit /etc/sysctl.conf and set vm.max_map_count to 262144.
 
-When the host reboots, you can verify that the setting is still correct by running:
+Verify status:
  sysctl vm.max_map_count
